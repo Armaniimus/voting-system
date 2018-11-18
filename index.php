@@ -15,7 +15,7 @@ error_reporting(0);
 
 <div id="sreda">
     <label>
-        <select name="voteSystemSelect">
+        <select name="voteSystem__Select">
             <option value="0">&mdash;&mdash;&mdash;</option>
             <?php
             $tmp = new voter();
@@ -34,5 +34,5 @@ error_reporting(0);
     <label><input type="radio" name="radio1" value="3" id="radio1_3" />even</label><br />
     <label><input type="radio" name="radio1" value="2" id="radio1_4" />bad</label><br />
     <label><input type="radio" name="radio1" value="1" id="radio1_5" />worst</label><br />
-    <input type="button" name="voteSystemSelectSubmit" value="Submit" /><br />
+    <input type="button" name="voteSystem__Submit" value="Submit" /><br />
 </div>
