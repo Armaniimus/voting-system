@@ -1,6 +1,6 @@
 <?php
 require_once "php/DataHandler.php";
-$DataHandler = new DataHandler("localhost", "test", "root", "password");
+$DataHandler = new DataHandler("localhost", "test", "test", "test");
 
 if ( isset($_POST["submit"]) &&  isset($_POST["articleName"]) ) {
     $value = $_POST['articleName'];
