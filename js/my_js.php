@@ -5,11 +5,12 @@ require_once('../php/defined.php');
 var hostinstalldir='http://'+window.location.hostname+'<?php echo VOTING_SYSTEM_FOLDER;?>';
 
 window.onload = function query() {
-	document.querySelector('input[name="s1"]').addEventListener('click', function() {
-		if (!parseInt(document.querySelector('select[name="select1"]').value)) {
+	const voteSystemSelectSubmit = document.querySelector('input[name="voteSystemSelectSubmit"]');
+	voteSystemSelectSubmit.addEventListener('click', function() {
+		const voteSystemSelect = document.querySelector('select[name="voteSystemSelect"]')
+		if (!parseInt(voteSystemSelectSubmit.value)) {
 			alert('Please, choose product');
-			//this.addEventListener("focus", myScript) {}
-			$(this).focus();
+			voteSystemSelect.focus();
 			return false;
 		}
 		$(this).hide('fast');
