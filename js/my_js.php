@@ -5,27 +5,25 @@ require_once('../php/defined.php');
 var hostinstalldir='http://'+window.location.hostname+'<?php echo VOTING_SYSTEM_FOLDER;?>';
 
 window.onload = function query() {
-	const voteSystemSelectSubmit = document.querySelector('input[name="voteSystemSelectSubmit"]');
-	voteSystemSelectSubmit.addEventListener('click', function() {
-		const voteSystemSelect = document.querySelector('select[name="voteSystemSelect"]')
-		if (!parseInt(voteSystemSelectSubmit.value)) {
-			alert('Please, choose product');
-			voteSystemSelect.focus();
+	const voteSystem__Submit = document.querySelector('input[name="voteSystem__Submit"]');
+	const voteSystem__Select = document.querySelector('select[name="voteSystem__Select"]');
+
+	voteSystem__Submit.addEventListener('click', function() {
+		if ( !parseInt( voteSystem__Select.value ) ) {
+			alert('Please, choose a product');
+			voteSystem__Select.focus();
 			return false;
 		}
-		$(this).hide('fast');
-		try{
-			$(this).show('slow');
-		}
-		catch(err){}
-		var tmp=parseInt($('input[name="radio1"]:checked').val());
-		if (tmp==0){
+
+		const tmp = parseInt( document.querySelector( 'input[name="radio1"]:checked' ).value );
+		if (tmp == 0){
 			alert('Please, choose your vote');
 			return false;
 		}
-		$.post(hostinstalldir+'php/voted.php',{'product':escape($('select[name="select1"]').val()),'vot':escape(tmp)},function(data){
+
+		$.post(hostinstalldir+'php/voted.php',{'product':escape(voteSystem__Select.value),'vot':escape(tmp)},function(data) {
 		alert(data);
-			var bla = escape($('select[name="select1"]').val());
+			var bla = escape(voteSystem__Select.value);
 			$('#sreda').empty();
 			$('#sreda').load(hostinstalldir+'php/check.php?prodid='+bla);
 		});
