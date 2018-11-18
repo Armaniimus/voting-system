@@ -10,10 +10,9 @@ header("Content-Type: text/html; charset=utf-8");
 require_once('/php/vote.php');
 error_reporting(0);
 ?>
-<script type="text/javascript" language="javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" language="javascript" src="js/my_js.php"></script>
 
-<div id="sreda">
+<div id="votingSystem">
     <label>
         <select name="voteSystem__Select">
             <option value="0">&mdash;&mdash;&mdash;</option>

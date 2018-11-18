@@ -2,9 +2,10 @@
 
 require_once('../php/defined.php');
 ?>
-var hostinstalldir='http://'+window.location.hostname+'<?php echo VOTING_SYSTEM_FOLDER;?>';
+const hostinstalldir='http://'+window.location.hostname+'<?php echo VOTING_SYSTEM_FOLDER;?>';
 
 window.onload = function query() {
+	const votingSystem = document.getElementById('votingSystem');
 	const voteSystem__Submit = document.querySelector('input[name="voteSystem__Submit"]');
 	const voteSystem__Select = document.querySelector('select[name="voteSystem__Select"]');
 
@@ -21,11 +22,35 @@ window.onload = function query() {
 			return false;
 		}
 
-		$.post(hostinstalldir+'php/voted.php',{'product':escape(voteSystem__Select.value),'vot':escape(tmp)},function(data) {
-		alert(data);
-			var bla = escape(voteSystem__Select.value);
-			$('#sreda').empty();
-			$('#sreda').load(hostinstalldir+'php/check.php?prodid='+bla);
-		});
+		fetch(hostinstalldir+'php/voted.php', {
+			method: 'post',
+			headers:{
+			    'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: encodeURI('product=' + voteSystem__Select.value + '&vot=' + tmp)
+		})
+		.then(function(response) {
+			return response.text();
+		})
+		.then(function(data) {
+			console.log(data);
+			alert(data);
+			const bla = escape(voteSystem__Select.value);
+			votingSystem.innerHTML = '';
+
+			fetch(hostinstalldir+'php/check.php?prodid='+bla)
+			.then(function(response) {
+				return response.text();
+			})
+			.then(function(data) {
+				document.getElementById('votingSystem').innerHTML = data;
+			})
+			.catch(function(error){
+				console.log(error);
+			})
+		})
+		.catch(function(error){
+			console.log(error);
+		})
 	});
 }
