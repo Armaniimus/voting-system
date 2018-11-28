@@ -7,7 +7,7 @@
   version 1.0
 */
 header("Content-Type: text/html; charset=utf-8");
-require_once('/php/vote.php');
+require_once('/php/vote.inc');
 error_reporting(0);
 ?>
 <script type="text/javascript" language="javascript" src="js/my_js.php"></script>

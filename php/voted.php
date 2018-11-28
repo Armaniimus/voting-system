@@ -6,7 +6,7 @@
   ICQ: 172789242
   version 1.0
 */
-require_once('vote.php');
+require_once('vote.inc');
 $a = new voter();
 echo $a->InsertVote($_POST['product'],$_POST['vot']);
 ?>
